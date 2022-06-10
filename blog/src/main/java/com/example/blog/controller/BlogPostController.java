@@ -1,5 +1,4 @@
-package com.example.blog.controller;
-
+package com.example.blog.Controller;
 
 import com.example.blog.service.BlogPostService;
 import com.example.blog.service.BlogPostServiceImpl;
@@ -11,7 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BlogPostController {
-    //display all posts
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    // display all posts
     @GetMapping("/")
     public String home() {
         return "index";
