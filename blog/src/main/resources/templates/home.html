@@ -52,7 +52,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     </div>
 </nav>
 <h1>Posts</h1>
+
 <div class="card rounded-4 border border-dark d-grid gap-3 " style="width: auto;">
+    <div th:each="user : ${listUsers}"></div>
     <div class="card-body rounded-4 border border-dark" >
         <div class="card-header bg-transparent border-success">User</div>
         <h5 class="card-title">Special title treatment</h5>
@@ -62,24 +64,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
             <b th:text="${execInfo.now.time}"></b>
         </div>
     </div>
-    <div class="card-body rounded-4 border border-dark ">
-        <div class="card-header bg-transparent border-success">User</div>
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        <div class="card-footer bg-transparent border-success">Footer
-            <b th:text="${execInfo.now.time}"></b>
-        </div>
-    </div>
-    <div class="card-body rounded-4 border border-dark ">
-        <div class="card-header bg-transparent border-success">User</div>
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        <div class="card-footer bg-transparent border-success">Footer
-            <b th:text="${execInfo.now.time}"></b>
-        </div>
-    </div>
+
 
 
 

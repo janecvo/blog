@@ -16,4 +16,14 @@ public class BlogPostController {
     public String home() {
         return "home";
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "logout";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
