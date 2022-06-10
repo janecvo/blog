@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="WIN" >
+<!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
+   <img src="../static/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png"  th:src="@{/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png}" >
+</div>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">WIN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav nav-pills nav-fill" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Misc</a>
+                </li>
+            </ul>
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-primary">1</button>
+                <button type="button" class="btn btn-primary">2</button>
+
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="d-grid gap-3">
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+</div>
+<h1>Posts</h1>
+<div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%; ">
+    <div class="card-body rounded-4 border border-dark  " >
+        <div class="card-header bg-transparent border-success">User</div>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-footer bg-transparent border-success">Footer
+            <b th:text="${execInfo.now.time}"></b>
+        </div>
+    </div>
+    <div class="card-body rounded-4 border border-dark  ">
+        <div class="card-header bg-transparent border-success">User</div>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-footer bg-transparent border-success">Footer
+            <b th:text="${execInfo.now.time}"></b>
+        </div>
+    </div>
+    <div class="card-body rounded-4 border border-dark ">
+        <div class="card-header bg-transparent border-success">User</div>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-footer bg-transparent border-success">Footer
+            <b th:text="${execInfo.now.time}"></b>
+        </div>
+    </div>
+
+</div>
+
+Now is: <b th:text="${execInfo.now.time}"></b>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
