@@ -14,21 +14,37 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <body>
 
     <!-- Create navigation bar (header)-->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-					Login Module</a>
-			</div>
-		</div>
-	</nav>
+    <div class="WIN">
+        <!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
+        <!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">WIN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="nav nav-pills nav-fill" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                    </li>
+                </ul>
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Options
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <li><a class="dropdown-item nav-link" th:href="@{login}">Login</a></li>
+                            <li><a class="dropdown-item nav-link" href="#">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <br>
 	<br>
