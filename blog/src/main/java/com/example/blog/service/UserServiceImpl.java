@@ -40,10 +40,11 @@
          return userRepository.save(user);
      }
 
-     @Override
-     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-         User user = userRepository.findByEmail(email);
+     @Override
+     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+         User user = userRepository.findByUsername(username);
          if(user == null) {
              throw new UsernameNotFoundException("Invalid username or password");
          }

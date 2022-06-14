@@ -2,8 +2,12 @@ package com.example.blog.controller;
 
 
 import com.example.blog.model.BlogPost;
+import com.example.blog.model.User;
+import com.example.blog.repository.UserRepository;
 import com.example.blog.service.BlogPostService;
+import com.example.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +19,10 @@ public class BlogPostController {
     //display all posts
 
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private BlogPostService blogPostService;
+
     @GetMapping("/")
     public String home(Model model) {
         List<BlogPost> postList = blogPostService.getAllBlogPosts();
@@ -33,6 +40,8 @@ public class BlogPostController {
 
     @PostMapping("/create")
     public String createPost(@ModelAttribute("blogPost") BlogPost blogPost) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        blogPost.setUser(userRepository.findByUsername(name));
         blogPostService.create(blogPost);
         return "redirect:/";
     }

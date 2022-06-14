@@ -3,6 +3,7 @@ package com.example.blog.service;
 import com.example.blog.model.BlogPost;
 import com.example.blog.model.User;
 import com.example.blog.repository.BlogPostRepository;
+import com.example.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class BlogPostServiceImpl implements BlogPostService {
+
 
     @Autowired
     private BlogPostRepository blogPostRepository;
@@ -29,12 +31,12 @@ private List<BlogPost> posts = new ArrayList<BlogPost>();
     }
     @Override
     public List<BlogPost> findAll() {
-        return this.posts;
+        return blogPostRepository.findAll();
     }
 
     @Override
     public List<BlogPost> findLatest5() {
-        return this.posts.stream()
+        return blogPostRepository.findAll().stream()
                 .sorted((a, b) -> b.getDateTime().compareTo(a.getDateTime()))
                 .limit(5)
                 .collect(Collectors.toList());
@@ -42,7 +44,7 @@ private List<BlogPost> posts = new ArrayList<BlogPost>();
 
     @Override
     public BlogPost findById(Long id) {
-        return this.posts.stream()
+        return blogPostRepository.findAll().stream()
                 .filter(p -> Objects.equals(p.getId(), id))
                 .findFirst()
                 .orElse(null);
@@ -50,14 +52,14 @@ private List<BlogPost> posts = new ArrayList<BlogPost>();
 
     @Override
     public void create(BlogPost post) {
-        blogPostRepository.save(post);
+            blogPostRepository.save(post);
     }
 
     @Override
     public BlogPost edit(BlogPost post) {
-        for (int i = 0; i < this.posts.size(); i++) {
-            if (Objects.equals(this.posts.get(i).getId(), post.getId())) {
-                this.posts.set(i, post);
+        for (int i = 0; i < blogPostRepository.findAll().size(); i++) {
+            if (Objects.equals(blogPostRepository.findAll().get(i).getId(), post.getId())) {
+                blogPostRepository.findAll().set(i, post);
                 return post;
             }
         }
@@ -66,9 +68,9 @@ private List<BlogPost> posts = new ArrayList<BlogPost>();
 
     @Override
     public void deleteById(Long id) {
-        for (int i = 0; i < this.posts.size(); i++) {
-            if (Objects.equals(this.posts.get(i).getId(), id)) {
-                this.posts.remove(i);
+        for (int i = 0; i < blogPostRepository.findAll().size(); i++) {
+            if (Objects.equals(blogPostRepository.findAll().get(i).getId(), id)) {
+                blogPostRepository.findAll().remove(i);
                 return;
             }
         }
