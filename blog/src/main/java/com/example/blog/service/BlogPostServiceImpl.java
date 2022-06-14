@@ -2,6 +2,8 @@ package com.example.blog.service;
 
 import com.example.blog.model.BlogPost;
 import com.example.blog.model.User;
+import com.example.blog.repository.BlogPostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,27 +15,17 @@ import java.util.stream.Collectors;
 @Service
 public class BlogPostServiceImpl implements BlogPostService {
 
-//    @Autowired
-//    private BlogPostRepository blogPostRepository;
-//
-//
+    @Autowired
+    private BlogPostRepository blogPostRepository;
 
-private List<BlogPost> posts = new ArrayList<BlogPost>() {{
-    add(new BlogPost(1L, "First Post", "<p>Line #1.</p><p>Line #2</p>", null));
-    add(new BlogPost(2L, "Second Post",
-            "Second post content:<ul><li>line 1</li><li>line 2</li></p>",
-            new User(10L, "pesho10", "Peter Ivanov")));
-    add(new BlogPost(3L, "Post #3", "<p>The post number 3 nice</p>",
-            new User(10L, "merry", null)));
-    add(new BlogPost(4L, "Forth Post", "<p>Not interesting post</p>", null));
-    add(new BlogPost(5L, "Post Number 5", "<p>Just posting</p>", null));
-    add(new BlogPost(6L, "Sixth Post", "<p>Another interesting post</p>", null));
-}};
+
+
+private List<BlogPost> posts = new ArrayList<BlogPost>();
 
 
         @Override
     public List<BlogPost> getAllBlogPosts() {
-            return findAll();
+            return blogPostRepository.findAll();
     }
     @Override
     public List<BlogPost> findAll() {
@@ -57,11 +49,8 @@ private List<BlogPost> posts = new ArrayList<BlogPost>() {{
     }
 
     @Override
-    public BlogPost create(BlogPost post) {
-        post.setId(this.posts.stream().mapToLong(
-                p -> p.getId()).max().getAsLong() + 1);
-        this.posts.add(post);
-        return post;
+    public void create(BlogPost post) {
+        blogPostRepository.save(post);
     }
 
     @Override

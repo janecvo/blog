@@ -1,5 +1,4 @@
-package com.example.blog.Controller;
-// package com.example.blog.controllers;
+package com.example.blog.controller;
 
 // import blog.forms.LoginForm;
 // import blog.services.NotificationService;

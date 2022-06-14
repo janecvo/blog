@@ -10,7 +10,7 @@ public interface BlogPostService {
     List<BlogPost> findAll();
     List<BlogPost> findLatest5();
     BlogPost findById(Long id);
-    BlogPost create(BlogPost post);
+    void create(BlogPost post);
 
     BlogPost edit(BlogPost post);
 

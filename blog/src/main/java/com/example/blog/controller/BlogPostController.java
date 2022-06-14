@@ -1,17 +1,14 @@
-package com.example.blog.Controller;
+package com.example.blog.controller;
 
 
 import com.example.blog.model.BlogPost;
 import com.example.blog.service.BlogPostService;
-import com.example.blog.service.BlogPostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BlogPostController {
@@ -19,16 +16,26 @@ public class BlogPostController {
 
     @Autowired
     private BlogPostService blogPostService;
-//    @GetMapping("/")
-//    public String home(Model model) {
-//        List<BlogPost> latest5Posts = blogPostService.findLatest5();
-//        model.addAttribute( "latest5posts", latest5Posts);
-//
-//        List<BlogPost> latest3Posts = latest5Posts.stream()
-//                .limit(3).collect(Collectors.toList());
-//        model.addAttribute("latest3posts",latest3Posts);
-//        return "home";
-//    }
+    @GetMapping("/")
+    public String home(Model model) {
+        List<BlogPost> postList = blogPostService.getAllBlogPosts();
+        model.addAttribute("allPosts", postList);
+        return "home";
+    }
+
+    @GetMapping("/showNewPostForm")
+    public String showNewPostForm(Model model) {
+        BlogPost blogPost = new BlogPost();
+        model.addAttribute("blogPost", blogPost);
+        return "new_post";
+    }
+
+
+    @PostMapping("/create")
+    public String createPost(@ModelAttribute("blogPost") BlogPost blogPost) {
+        blogPostService.create(blogPost);
+        return "redirect:/";
+    }
 
 
     @GetMapping("/logout")

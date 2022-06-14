@@ -10,46 +10,27 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 </head>
 <body>
 <div class="WIN" >
-<!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
-   <img src="../static/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png"  th:src="@{/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png}" >
+
 </div>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">WIN</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="nav nav-pills nav-fill" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/login}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Misc</a>
+                    <a class="nav-link" th:href="@{showNewPostForm}">New Post</a>
                 </li>
             </ul>
             <div class="form-group">
                 <a href="/" th:href="@{/logout}">Logout</a>
-            </div>
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-primary">1</button>
-                <button type="button" class="btn btn-primary">2</button>
-
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -64,19 +45,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <h1>Home</h1>
 <div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%">
 
-    <div th:each="p : ${latest3posts}">
+    <div th:each="post : ${allPosts}">
     <div class="card-body rounded-4 border border-dark" >
-        <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
-            <span th:text="${p.user.fullName != null ?
-                        p.user.fullName : p.user.username}">User</span>
-        </div>
-        <h5 class="card-title" th:text="${p.title}">
+<!--        <div class="card-header bg-transparent border-dark" th:if="${p.user}" >-->
+<!--&lt;!&ndash;            <span th:text="${p.user.fullName != null ?&ndash;&gt;-->
+<!--&lt;!&ndash;                        p.user.fullName : p.user.username}">User</span>&ndash;&gt;-->
+<!--        </div>-->
+        <h5 class="card-title" th:text="${post.title}">
             Special title treatment</h5>
-        <p class="card-text content" th:utext="${p.content}">
+        <p class="card-text content" th:utext="${post.content}">
             With supporting text below as a natural lead-in to additional content.</p>
         <a href="#" class="btn btn-primary">
             Go somewhere</a>
-        <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+        <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(post.dateTime, 'dd-MMM-yyyy')}">Footer
             <b th:text="${execInfo.now.time}"></b>
         </div>
     </div>

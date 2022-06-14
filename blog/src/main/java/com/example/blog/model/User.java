@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,23 +15,27 @@ public class User {
     private String username;
 
     @Column
-    private String email;
-
-    @Column
-    private String passwordHash;
-
     private String fullName;
 
     @Column
-    @OneToMany(mappedBy = "id")
+    private String email;
+
+    @Column
+    private String password;
+
+
+
+
+    @Column
+    @OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
     private List<BlogPost> posts;
 
-    public User(Long id, String username, String fullName) {
+    public User(Long id, String username, String fullName, String password, String email) {
         this.id = id;
         this.username = username;
         this.fullName  = fullName;
-//        this.password = password;
-//        this.email = email;
+        this.email = email;
+        this.password = password;
     }
 
     public User() {
@@ -62,11 +66,11 @@ public class User {
     }
 
     public String getPassword() {
-        return passwordHash;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.passwordHash = password;
+        this.password = password;
     }
 
     public String getFullName() {
@@ -86,7 +90,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username='" + username + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
+                ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' + '}';
     }
 }
