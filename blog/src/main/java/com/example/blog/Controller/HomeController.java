@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
-    public class HomeController {
+//@Controller
+//    public class HomeController {
 //
 //    @Autowired
 //    private BlogPostService blogPostService;
@@ -37,8 +37,8 @@ import java.util.stream.Collectors;
 //        public String login() {
 //            return "login";
 //        }
-
-    }
+//
+//    }
 //=======
 ////package com.example.blog.controller;
 ////import org.springframework.stereotype.Controller;

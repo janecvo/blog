@@ -25,4 +25,7 @@ h1{
     /*opacity: 100%;*/
 }
 
-
+.formError {
+    color: red;
+    font-style: italic;
+}

@@ -25,13 +25,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a>
+                    <a class="nav-link" th:href="@{users/login}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Misc</a>
+                    <a class="nav-link" th:href="@{/posts/User}">Posts</a>
                 </li>
             </ul>
             <div class="form-group">
@@ -81,6 +81,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
         </div>
     </div>
     </div>
+<!--    <aside>-->
+<!--        <h2>Recent Posts</h2>-->
+<!--        <a href=“#” th:each=“p : ${latest5posts}” th:text=“${p.title}” th:href=“@{/posts/view/{id}/(id=${p.id})}”>-->
+<!--            Work Begins on HTML5.1</a>-->
+<!--    </aside>-->
 </div>
 
 

@@ -10,17 +10,17 @@ import java.util.Date;
 @Entity
 @Table(name = "posts")
 public class BlogPost {
-    private static final int MIN_TITLE_LENGTH = 7;
+//    private static final int MIN_TITLE_LENGTH = 7;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
-    @Column
+    @Column(name = "title")
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "content")
     private String content;
 
     @ManyToOne
@@ -46,30 +46,37 @@ public class BlogPost {
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getTitle() {
+
         return title;
     }
 
     public void setTitle(String title) {
+
         this.title = title;
     }
 
     public String getContent() {
+
         return content;
     }
 
     public void setContent(String content) {
+
         this.content = content;
     }
 
     public User getUser() {
+
         return user;
     }
 
     public void setUser(User user) {
+
         this.user = user;
     }
 
@@ -85,6 +92,12 @@ public class BlogPost {
 
     @Override
     public String toString(){
-        return "hi";
+       return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", user=" + user +
+                ", dateTime=" + dateTime +
+                '}';
     }
 }

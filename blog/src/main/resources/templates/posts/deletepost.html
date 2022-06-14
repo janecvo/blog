@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="WIN" >
+    <!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
+    <img src="../../static/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png" th:src="@{/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png}" >
+</div>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">WIN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav nav-pills nav-fill" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/static}" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{users/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"th:href="@{/logout}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Misc</a>
+                </li>
+            </ul>
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-primary">1</button>
+                <button type="button" class="btn btn-primary">2</button>
+
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="d-grid gap-3">
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+</div>
+<header>Are you sure you want to delete this Post?</header>
+<div class="card-body rounded-4 border border-dark" >
+    <div th:each="p : ${latest3posts}">
+    <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
+            <span th:text="${p.user.fullName != null ?
+                        p.user.fullName : p.user.username}">User</span>
+    </div>
+    <h5 class="card-title" th:text="${p.title}">
+        Special title treatment</h5>
+    <p class="card-text content" th:utext="${p.content}">
+        With supporting text below as a natural lead-in to additional content.</p>
+    <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+        <b th:text="${execInfo.now.time}"></b>
+    </div>
+
+    <a href="/delete/{id}(id=${p.id})}" class="btn btn-primary">
+        Delete
+    </a>
+    <button> Cancel </button>
+</div>
+</div>
+</body>
+</html>

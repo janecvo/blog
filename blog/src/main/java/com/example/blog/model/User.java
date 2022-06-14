@@ -1,30 +1,32 @@
 package com.example.blog.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+//import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 30, unique = true)
     private String username;
 
-    @Column
-    private String email;
+//    @Column
+//    private String email;
 
-    @Column
+    @Column(length = 60)
     private String passwordHash;
 
+    @Column(length = 100)
     private String fullName;
 
     @Column
-    @OneToMany(mappedBy = "id")
-    private List<BlogPost> posts;
+    @OneToMany(mappedBy = "user")
+    private Set<BlogPost> posts = new HashSet<>();
 
     public User(Long id, String username, String fullName) {
         this.id = id;
@@ -53,13 +55,13 @@ public class User {
     public void setUsername(String firstName) {
         this.username = firstName;
     }
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public String getPassword() {
         return passwordHash;
@@ -72,14 +74,15 @@ public class User {
     public String getFullName() {
         return fullName; }
     public void setFullName(String fullName) {
+
         this.fullName = fullName;
     }
 
-        public List<BlogPost> getPosts() {
+        public Set<BlogPost> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<BlogPost> posts) {
+    public void setPosts(Set<BlogPost> posts) {
         this.posts = posts;
     }
 

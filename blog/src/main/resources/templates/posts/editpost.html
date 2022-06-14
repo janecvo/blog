@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>Edit Post</header>
+<div class="card-body rounded-4 border border-dark" >
+    <form action="#" th:action="@{/editpost}" th:object="${BlogPost}" method="POST">
+    <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
+            <span th:text="${p.user.fullName != null ?
+                        p.user.fullName : p.user.username}">User</span>
+    </div>
+    <h5 class="card-title" th:text="${p.title}">
+        <input type="text" th:field="*{title}" class="form-control mb-4 col-4">
+    </h5>
+    <p class="card-text content" th:utext="${p.content}">
+        <input type="text" th:field="*{content}" class="form-control mb-4 col-4">
+    </p>
+    <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+        <b th:text="${execInfo.now.time}"></b>
+    </div>
+
+        <button type="submit" class="btn btn-info col-2"> Save </button>
+    </form>
+</div>
+
+
+
+</body>
+</html>
+

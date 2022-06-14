@@ -1,45 +1,49 @@
 package com.example.blog.Controller;
-// package com.example.blog.controllers;
 
-// import blog.forms.LoginForm;
-// import blog.services.NotificationService;
-// import blog.services.UserService;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Controller;
-// import org.springframework.validation.BindingResult;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestMethod;
+import com.example.blog.Forms.LoginForm;
+import com.example.blog.service.NotificationService;
+import com.example.blog.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-// import javax.validation.Valid;
+import javax.persistence.Column;
 
-// @Controller
-// public class LoginController {
+import javax.validation.Valid;
 
-//     @Autowired
-//     private UserService userService;
+//import javax.validation.Valid;
 
-//     @Autowired
-//     private NotificationService notifyService;
+@Controller
+public class LoginController {
 
-//     @RequestMapping("/users/login")
-//     public String login(LoginForm loginForm) {
-//         return "users/login";
-//     }
+     @Autowired
+     private UserService userService;
 
-//     @RequestMapping(value = "/users/login", method = RequestMethod.POST)
-//     public String loginPage(@Valid LoginForm loginForm, BindingResult bindingResult) {
-//         if (bindingResult.hasErrors()) {
-//              notifyService.addErrorMessage("Please fill the form correctly!");
-//              return "users/login";
-//         }
+     @Autowired
+     private NotificationService notifyService;
 
-//         if (!userService.authenticate(
-//              loginForm.getUsername(), loginForm.getPassword())) {
-//              notifyService.addErrorMessage("Invalid login!");
-//              return "users/login";
-//         }
+     @RequestMapping("users/login")
+     public String login(LoginForm loginForm) {
+         return "users/login";
+     }
 
-//         notifyService.addInfoMessage("Login successful");
-//         return "redirect:/";
-//     }
-// }
+     @RequestMapping(value = "users/login", method = RequestMethod.POST)
+     public String loginPage(@Validated LoginForm loginForm, BindingResult bindingResult) {
+         if (bindingResult.hasErrors()) {
+              notifyService.addErrorMessage("Please fill the form correctly!");
+              return "users/login";
+         }
+
+         if (!userService.authenticate(
+              loginForm.getUsername(), loginForm.getPassword())) {
+              notifyService.addErrorMessage("Invalid login!");
+              return "users/login";
+         }
+
+         notifyService.addInfoMessage("Login successful");
+         return "redirect:/";
+     }
+ }
