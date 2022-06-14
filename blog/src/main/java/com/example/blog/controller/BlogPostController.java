@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,16 +19,16 @@ public class BlogPostController {
 
     @Autowired
     private BlogPostService blogPostService;
-//    @GetMapping("/")
-//    public String home(Model model) {
-//        List<BlogPost> latest5Posts = blogPostService.findLatest5();
-//        model.addAttribute( "latest5posts", latest5Posts);
-//
-//        List<BlogPost> latest3Posts = latest5Posts.stream()
-//                .limit(3).collect(Collectors.toList());
-//        model.addAttribute("latest3posts",latest3Posts);
-//        return "home";
-//    }
+   @GetMapping("/")
+   public String home(Model model) {
+       List<BlogPost> latest5Posts = blogPostService.findLatest5();
+       model.addAttribute( "latest5posts", latest5Posts);
+
+       List<BlogPost> latest3Posts = latest5Posts.stream()
+               .limit(3).collect(Collectors.toList());
+       model.addAttribute("latest3posts",latest3Posts);
+       return "home";
+   }
 
 
     @GetMapping("/logout")

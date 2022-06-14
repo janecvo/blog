@@ -31,13 +31,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
                     <a class="nav-link" href="#">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Misc</a>
+                    <a class="nav-link disabled">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
-            <div class="form-group">
-                <a href="/" th:href="@{/logout}">Logout</a>
-            </div>
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            
+            <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <button type="button" class="btn btn-primary">1</button>
                 <button type="button" class="btn btn-primary">2</button>
 
@@ -50,7 +51,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
                         <li><a class="dropdown-item" href="#">Dropdown link</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </nav>
