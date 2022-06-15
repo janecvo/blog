@@ -12,7 +12,10 @@ public interface BlogPostService {
     BlogPost findById(Long id);
     void create(BlogPost post);
 
+
     BlogPost edit(BlogPost post);
 
     void deleteById(Long id);
+
+    void deletePostById(Long id);
 }

@@ -55,6 +55,7 @@ private List<BlogPost> posts = new ArrayList<BlogPost>();
             blogPostRepository.save(post);
     }
 
+
     @Override
     public BlogPost edit(BlogPost post) {
         for (int i = 0; i < blogPostRepository.findAll().size(); i++) {
@@ -75,5 +76,10 @@ private List<BlogPost> posts = new ArrayList<BlogPost>();
             }
         }
         throw new RuntimeException("Post not found: " + id);
+    }
+
+    @Override
+    public void deletePostById(Long id) {
+        blogPostRepository.deleteById(id);
     }
 }
