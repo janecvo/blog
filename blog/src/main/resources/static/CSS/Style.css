@@ -11,14 +11,18 @@
 }
 
 img{
+    /*width: 200px;*/
     margin: auto;
-    margin-top: 5%;
+    margin-top: 3%;
     display: block;
     width: 35%;
-    height: 70%;
-    image-rendering: smooth;
+    height: 85%;
 
 }
+
+/*#CFT {*/
+/*    width: 200px;*/
+/*}*/
 
 h1{
     z-index: 5;

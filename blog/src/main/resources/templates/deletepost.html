@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div class="WIN" >
-    <!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
-    <img src="../../static/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png" th:src="@{/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png}" >
-</div>
+<!--    <img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
+    <img src="../static/IMG/site-logo_whiteCFT.png"  th:src="@{/IMG/site-logo_whiteCFT.png}">
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">WIN</a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,6 +46,8 @@
         </div>
     </div>
 </nav>
+</div>
+
 <div class="d-grid gap-3">
     <div class="p-2 "></div>
     <div class="p-2 "></div>
@@ -56,24 +57,25 @@
 </div>
 <header>Are you sure you want to delete this Post?</header>
 <div class="card-body rounded-4 border border-dark" >
-    <div th:each="p : ${latest3posts}">
-    <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
-            <span th:text="${p.user.fullName != null ?
-                        p.user.fullName : p.user.username}">User</span>
+
+    <div class="card-header bg-transparent border-dark" th:text="${blogPost.user}" >
+            <span th:text="${blogPost.user.fullName != null ?
+                        blogPost.user.fullName : blogPost.user.username}">User</span>
     </div>
-    <h5 class="card-title" th:text="${p.title}">
+    <h5 class="card-title" th:text="${blogPost.title}">
         Special title treatment</h5>
-    <p class="card-text content" th:utext="${p.content}">
+    <p class="card-text content" th:utext="${blogPost.content}">
         With supporting text below as a natural lead-in to additional content.</p>
-    <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+    <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(blogPost.dateTime, 'dd-MMM-yyyy')}">Footer
         <b th:text="${execInfo.now.time}"></b>
     </div>
 
-    <a href="/delete/{id}(id=${p.id})}" class="btn btn-primary">
-        Delete
-    </a>
+    <button>
+        <a th:href="@{/deleteposts/{id}(id=${blogPost.id})}" class="btn btn-primary"> Delete </a>
+    </button>
     <button> Cancel </button>
 </div>
-</div>
+
+
 </body>
 </html>

@@ -51,28 +51,43 @@ public class BlogPostController {
             return "redirect:/";
         }
         model.addAttribute("post", post);
-        return "posts/user";
+        return "posts/User";
     }
 
     @RequestMapping("/posts/User")
     public String User(Model model) {
         List<BlogPost> latest5Posts = blogPostService.findLatest5();
         model.addAttribute( "latest5posts", latest5Posts);
+
+        List<BlogPost> latestfivePosts = latest5Posts.stream()
+                .limit(5).collect(Collectors.toList());
+        model.addAttribute("latestfiveposts", latestfivePosts);
+
         return "/posts/User";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("deletepost/{id}/confirm")
     public String delete(@PathVariable (value = "id") long id) {
-        this.blogPostService.deleteById(id);
-        return "redirect:/";
+        //this.blogPostService.deleteById(id);
+        return "redirect:/posts/User";
     }
-//    @GetMapping("/editblogpost/{id}")
-//    public String editblogpost(Model model) {
-//        // create model attribute to bind form data
-//        BlogPost blogPost = new BlogPost();
-//        model.addAttribute("blogPost", blogPost);
-//        return "editpost";
-//    }
+
+    @RequestMapping("deletepost/{id}")
+        public String saveDelete(@PathVariable("id") Long id, Model model) {
+     BlogPost blogPost = blogPostService.findById(id);
+     model.addAttribute("blogPost", blogPost);
+     return "redirect:/posts/User";
+
+    }
+
+
+    @GetMapping("/editpost/{id}")
+    public String editblogpost(@PathVariable(value = "id") long id, Model model) {
+        // create model attribute to bind form data
+        BlogPost blogPost = blogPostService.findById(id);
+        model.addAttribute("blogPost", blogPost);
+        return "editpost";
+    }
     @PostMapping("/editpost")
     public String edit(@ModelAttribute("BlogPost") BlogPost post) {
         // save employee to database
