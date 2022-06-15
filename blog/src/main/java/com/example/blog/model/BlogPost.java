@@ -10,17 +10,17 @@ import java.util.Date;
 @Entity
 @Table(name = "posts")
 public class BlogPost {
-//    private static final int MIN_TITLE_LENGTH = 7;
+    private static final int MIN_TITLE_LENGTH = 7;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
-    @Column(name = "title")
+    @Column
     private String title;
 
-    @Column(name = "content")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -46,37 +46,30 @@ public class BlogPost {
     }
 
     public void setId(Long id) {
-
         this.id = id;
     }
 
     public String getTitle() {
-
         return title;
     }
 
     public void setTitle(String title) {
-
         this.title = title;
     }
 
     public String getContent() {
-
         return content;
     }
 
     public void setContent(String content) {
-
         this.content = content;
     }
 
     public User getUser() {
-
         return user;
     }
 
     public void setUser(User user) {
-
         this.user = user;
     }
 
@@ -95,17 +88,4 @@ public class BlogPost {
 //        return "hi";
 //    }
 
-<<<<<<< HEAD
-=======
-    @Override
-    public String toString(){
-       return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", user=" + user +
-                ", dateTime=" + dateTime +
-                '}';
-    }
->>>>>>> 9631e3c5d39b2380a361072705344ce6b2006d01
 }
