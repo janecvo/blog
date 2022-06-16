@@ -1,4 +1,4 @@
-package com.example.blog.controller;
+package com.example.blog.Controller;
 
 
 import com.example.blog.model.BlogPost;
@@ -23,6 +23,7 @@ public class BlogPostController {
     @Autowired
     private BlogPostService blogPostService;
 
+    
     @GetMapping("/")
     public String home(Model model) {
         List<BlogPost> postList = blogPostService.getAllBlogPosts();

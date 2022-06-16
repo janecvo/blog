@@ -52,7 +52,7 @@
          return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapBlogPostsToAuthorities(user.getPosts()));
 
      }
-//
+
      private Collection<? extends GrantedAuthority> mapBlogPostsToAuthorities(Collection<BlogPost> posts) {
          return posts.stream().map(post -> new SimpleGrantedAuthority(post.getContent())).collect(Collectors.toList());
      }

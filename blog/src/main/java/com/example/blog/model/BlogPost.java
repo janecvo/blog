@@ -23,7 +23,9 @@ public class BlogPost {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    // private User user;
+    @ManyToOne
     private User user;
 
     @Column
@@ -82,10 +84,5 @@ public class BlogPost {
 
         this.dateTime = dateTime;
     }
-//
-//    @Override
-//    public String toString(){
-//        return "hi";
-//    }
 
 }
